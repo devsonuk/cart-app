@@ -8,7 +8,7 @@ class CartItem extends React.Component {
             title: 'Mobile Phone',
             qty: 1,
             img: ''
-        }
+        };
     }
 
     increaseQuantity = () => {
@@ -22,13 +22,20 @@ class CartItem extends React.Component {
             return {
                 qty: prevState.qty + 1 
             }
+        }, () => {
+            console.log("Callback");
         });
     }
 
     decreaseQuantity = () => {
+        const {qty} = this.state;
+        if (qty <= 0) {
+            return;
+        }
+
         this.setState((prevState) => {
             return {
-                qty: prevState.qty > 0 ?  prevState.qty - 1 : 0
+                qty: prevState.qty - 1
             }
         })
     }
