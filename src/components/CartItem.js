@@ -8,13 +8,17 @@ class CartItem extends React.Component {
         // });
         
         // Form2
-        this.setState((prevState) => {
-            return {
-                qty: prevState.qty + 1 
-            }
-        }, () => {
-            console.log("Callback");
-        });
+        // this.setState((prevState) => {
+        //     return {
+        //         qty: prevState.qty + 1 
+        //     }
+        // }, () => {
+        //     console.log("Callback");
+        // });
+
+        //Handling via event
+
+
     }
 
     decreaseQuantity = () => {
@@ -37,7 +41,7 @@ class CartItem extends React.Component {
     }
 
     render() {
-        const {price, title, qty, img} = this.props;
+        const {price, title, qty, img} = this.props.product;
         return (
             <div className='cart-item'>
                 <div className='left-block'>
@@ -53,19 +57,19 @@ class CartItem extends React.Component {
                             alt='increase' 
                             className='action-icons' 
                             src='https://cdn-icons-png.flaticon.com/128/1828/1828925.png'
-                            onClick={this.increaseQuantity}
+                            onClick={() => this.props.onIncreaseQuantity(this.props.product)}
                         />
                         <img 
                             alt='decrease' 
                             className='action-icons' 
                             src='https://cdn-icons-png.flaticon.com/128/992/992683.png'
-                            onClick={this.decreaseQuantity}
+                            onClick={() => this.props.onDecreaseQuantity(this.props.product)}
                         />
                         <img 
                             alt='delete' 
                             className='action-icons' 
                             src='https://cdn-icons-png.flaticon.com/128/484/484662.png'
-                            onClick={this.deleteItem}
+                            onClick={() => this.props.onDeleteItem(this.props.product)}
                         />
                     </div>
                 </div>
